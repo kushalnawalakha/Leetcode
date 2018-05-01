@@ -1,17 +1,28 @@
 package DP_TusharRoy;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
  * Created by kusha on 6/17/2017.
  */
 public class CoinChange {
-    public static int recursive(int nums[],int sum,int current){
-        for(int i=0;i<nums.length;i++){
+    public static int recursive(int nums[], int current, int dp[]) {
 
+        if (current < 0)
+            return -1;
+        if (current == 0 || dp[current] != 0)
+            return dp[current];
+
+        for (int i = 0; i < nums.length; i++) {
+            int val = recursive(nums, current - nums[i], dp);
+            if (val < 0)
+                continue;
+            if (dp[current] == 0)
+                dp[current] = val + 1;
+            else
+                dp[current] = Math.min(val + 1, dp[current]);
         }
-        return 0;
+        return dp[current];
     }
 
     public static void dp(int nums[],int sum){
@@ -55,7 +66,19 @@ public class CoinChange {
 
     public static void main(String[] args) {
         int nums[]={7,2,3,6};
-        dp(nums,14);
+        int dp[] = new int[15];
+        String a = "abc", b = "pqrstuvqxyz";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, j = 0; i + j < a.length() + b.length(); i++, j++) {
+            if (a.length() > i)
+                sb.append(a.charAt(i));
+            if (b.length() > j)
+                sb.append(b.charAt(j));
+        }
+        System.out.println(sb);
+//        recursive(nums,14,new int[15]);
     }
 
 }
+
+

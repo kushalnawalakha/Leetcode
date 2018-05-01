@@ -2,11 +2,18 @@ package CTCI;
 
 import DataStructures.ListNode;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by kusha on 7/17/2017.
  */
 public class LinkedListPalindrome {
     ListNode home=null;
+
+
+
 
     public boolean isPalindome(ListNode listNode){
         boolean b=true;
